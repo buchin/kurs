@@ -19,6 +19,7 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
     $kurs = null;
     if($cacheAvailable){
         $kurs = $memcache->get('bca');
+        var_dump($kurs);
     }
     if(!$kurs){
         $kurs = new Kurs;
@@ -27,7 +28,7 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
             $kurs = json_encode($kurs);
             switch ($format) {
                 case '.jsonp':
-                    $kurs = $app->request()->get('callback') . '(' . $data . ')';
+                    $kurs = $app->request()->get('callback') . '(' . $kurs . ')';
                     break;
             }
             if($cacheAvailable) $memcache->set('bca', $kurs, false, 3600);
