@@ -27,6 +27,8 @@ class Kurs
                 $kurs[$mataUang]['beli'] = pq("td:eq($i)")->html();
             }
         }
+
+        $kurs['updated_at'] = time();
         return $kurs;
     }
 }

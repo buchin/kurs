@@ -16,7 +16,6 @@ $app = new Slim(array(
 
 // Define routes
 $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcache, $cacheAvailable) {
-    var_dump($cacheAvailable);
     $kurs = null;
     if($cacheAvailable){
         $kurs = $memcache->get('bca');
