@@ -1,6 +1,6 @@
 global:
     env:
-        - SLIM_ENV: development
+        - SLIM_ENV: production
 web1:
     # App settings
     name: slim_app
@@ -54,3 +54,6 @@ web1:
     after_deploy:
         - "rm -Rf var/cache/*"
         - "rm -Rf var/logs/*"
+cache1:
+  type: memcached
+  name: memcache_1
