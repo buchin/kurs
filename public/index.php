@@ -5,8 +5,8 @@ require '../vendor/autoload.php';
 require '../vendor/phpQuery.php';
 require '../models/kurs.php';
 
-$memcache = new Memcache;
-$cacheAvailable = $memcache->connect('tunnel.pagodabox.com', 11211);
+$memcache = new Memcached();
+$cacheAvailable = $memcache->addServer('tunnel.pagodabox.com', 11211);
 
 // Prepare app
 $app = new Slim(array(
@@ -31,7 +31,7 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
                     $kurs = $app->request()->get('callback') . '(' . $kurs . ')';
                     break;
             }
-            if($cacheAvailable) $memcache->set('bca', $kurs, false, 3600);
+            if($cacheAvailable) $memcache->set('bca', $kurs, 3600);
         }
     }
     
