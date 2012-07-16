@@ -31,7 +31,7 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
                     break;
             }
             if($cacheAvailable) {
-                $status = $memcache->set('bca', $kurs, 3600);
+                $status = $memcache->set('bca', $kurs, time()+3600);
                 var_dump($status);
             }
         }
