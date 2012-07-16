@@ -20,7 +20,7 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
     if($cacheAvailable){
         $kurs = $memcache->get('bca');
     }
-    if(!($kurs){
+    if(!$kurs){
         $kurs = new Kurs;
         $kurs = $kurs->bca();
         if(!empty($kurs)){
