@@ -50,6 +50,7 @@ web1:
     # Install Composer dependencies
     after_build:
         - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
+        - "php composer.phar update"
 
     # Clear template cache and old logs
     after_deploy:
