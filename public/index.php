@@ -14,17 +14,6 @@ $app = new Slim(array(
     'debug' => true,
 ));
 
-// Prepare view
-$twigView = new View_Twig();
-$twigView->twigOptions = array(
-    'charset' => 'utf-8',
-    'cache' => realpath('../var/cache'),
-    'auto_reload' => true,
-    'strict_variables' => false,
-    'autoescape' => true
-);
-$app->view($twigView);
-
 // Define routes
 $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcache, $cacheAvailable) {
     $kurs = null;
