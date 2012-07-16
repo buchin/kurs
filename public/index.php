@@ -16,15 +16,15 @@ $app = new Slim(array(
 
 // Define routes
 $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcache, $cacheAvailable) {
+    var_dump($cacheAvailable);
     $kurs = null;
     if($cacheAvailable){
         $kurs = $memcache->get('bca');
-        var_dump($kurs);
     }
     if(!$kurs){
         $kurs = new Kurs;
         $kurs = $kurs->bca();
-        if($kurs){
+        if(!empty($kurs)){
             $kurs = json_encode($kurs);
             switch ($format) {
                 case '.jsonp':
