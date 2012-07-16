@@ -48,6 +48,3 @@ web1:
     after_deploy:
         - "rm -Rf var/cache/*"
         - "rm -Rf var/logs/*"
-cache1:
-  type: memcached
-  name: memcache_1
