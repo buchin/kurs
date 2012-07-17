@@ -13,8 +13,10 @@ class Kurs
         if($html == false){
            return false;
         }
+        
         phpQuery::newDocumentHTML($html, $charset = 'utf-8');
         $mataUang = '';
+        
         for ($i=7; $i <= 48 ; $i++) {
             
             if(($i-1)%3 == 0){
