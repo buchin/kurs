@@ -32,9 +32,6 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
             }
         }
     }
-    else{
-        die('service unavailable please try again later');
-    }
     
     switch ($format) {
         case '.jsonp':
