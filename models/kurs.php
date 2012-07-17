@@ -28,7 +28,10 @@ class Kurs
             }
         }
 
-        $kurs['updated_at'] = time();
-        return $kurs;
+        $data = array(
+            'updated_at' => time(),
+            'kurs'       => $kurs
+            );
+        return $data;
     }
 }
