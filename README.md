@@ -83,3 +83,6 @@ Orang tuaku, istriku Lara Asih Mulya, asistenku Moeghan Diantok beserta Rinah, R
 
 Anda merasa aplikasi ini berguna? Saya menerima donasi via Bank, PayPal dan Gittip, sila hubungi buchin@dropsugar.com.
 Donasi anda akan saya buat untuk kelangsungan project ini, seperti biaya server dan lain-lain.
+
+## Lisensi
+Free software, sila gunakan untuk keperluan yang halal :p
