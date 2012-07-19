@@ -42,5 +42,15 @@ $app->get('/rates/bca(:format)', function ($format = '.json') use ($app, $memcac
     echo $kurs;
 });
 
+$app->get('/examples/bca', function(){
+    $response =  json_decode(file_get_contents('http://kurs.dropsugar.com/rates/bca.json'));
+    echo "Terakhir diupdate pada: " . date('j-m-Y H:i:s');
+    foreach ($response->kurs as $currency => $value) {
+        echo 'Nilai jual ' . $currency . ' adalah: ' . $value->jual . '<br>';
+        echo 'Nilai beli ' . $currency . ' adalah: ' . $value->beli . '<br><br>';
+    }
+
+});
+
 // Run app
 $app->run();
