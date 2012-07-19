@@ -73,7 +73,7 @@ Saya sadar aplikasi ini masih belum sempurna, secara pribadi, saya ingin memasuk
 
 ## Ucapan terimasih & tautan
 
-Orang tuaku, Istriku Lara Asih Mulya, Rizky Ramadhan beserta Maylatun Sari, Ari Sandi Robert, Adrian Sandi, Momod Ari, Leonardo Rony S, Aa Gym, Yusuf Mansyur, Guru-guru saya, kakek buyut, anak cucu, dan semua teman TC 05, rekan-rekan iMers dan IMMatic, saudara-saudara serta semua pihak yang belum saya sebut di sini.
+Orang tuaku, istriku Lara Asih Mulya, asistenku Moeghan Diantok beserta Rinah, Rizky Ramadhan beserta Maylatun Sari, Ari Sandi Robert, Adrian Sandi, Momod Ari, Leonardo Rony S, Aa Gym, Yusuf Mansyur, Guru-guru saya, kakek buyut, anak cucu, dan semua teman TC 05, rekan-rekan iMers dan IMMatic, saudara-saudara serta semua pihak yang belum saya sebut di sini.
 
 * http://dropsugar.com
 * http://amplop.in
