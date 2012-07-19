@@ -57,8 +57,8 @@ Contoh ini blom kutes :D, namun garis besarnya akan seperti ini
 $(function(){
     $.getJSON('http://kurs.dropsugar.com/rates/bca.jsonp?callback=?', function(data){
         //data sudah didapat, kita update tag div dengan ID usd-jual dan usd-beli
-        $('#usd-jual').html(data.kurs.BCA.jual);
-        $('#usd-beli').html(data.kurs.BCA.beli);
+        $('#usd-jual').html(data.kurs.USD.jual);
+        $('#usd-beli').html(data.kurs.USD.beli);
 
         // untuk keperluan debug, hasil panggil API bisa dilihat di javascript console
         console.log(data);
