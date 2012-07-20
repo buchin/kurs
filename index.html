@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Kurs by buchin</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Kurs</h1>
+        <p>API untuk kurs nilai tukar rupiah ke beberapa mata uang dunia. Karena bank-bank di indonesia tidak menyediakan API.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/buchin/kurs" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/buchin/kurs/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/buchin/kurs/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Kurs</h1>
+
+<p>Sebuah API (Application Programming Interface) untuk mengetahui nilai tukar rupiah terhadap beberapa mata uang asing. 
+Untuk saat ini, data diambil dari Bank Central Asia.</p>
+
+<p>Untuk saat ini hasil bisa dilihat di <a href="http://kurs.dropsugar.com/rates/bca.json">http://kurs.dropsugar.com/rates/bca.json</a> atau <a href="http://kurs.dropsugar.com/rates/bca.jsonp?callback=namafungsi">http://kurs.dropsugar.com/rates/bca.jsonp?callback=namafungsi</a></p>
+
+<h2>Alasan membuat API ini</h2>
+
+<p>Banyak website yang membutuhkan data nilai tukar rupiah terhadap mata uang asing, terutama USD. Namun, server mereka tidak cukup kuat untuk scraping data secara langsung. Bisa jadi, keterbatasan sumber daya programmer juga mempengaruhi.</p>
+
+<p>Terlebih lagi, bank-bank di indonesia sebagai rujukan tidak menyediakan sarana yang memudahkan developer untuk memakai data mereka. Hal ini cukup disayangkan karena banyaknya permintaan akan data ini.</p>
+
+<p>Berbagai contoh skenario:</p>
+
+<ul>
+<li>Para web publisher di Indonesia banyak yang memakai BCA sebagai rujukan ketika mau jual beli paypal. Alangkah lebih baik jika di lapak-lapak mereka, terutama forum, ada widget untuk melihat nilai tukar hari ini.</li>
+<li>Banyak toko online yang masih memakai dolar sebagai tolok ukur harga jual, terutama komputer dan asesorisnya. API bisa dipakai sebagai rujukan dan bisa diotomatisasi agar harga bisa dilihat sebagai rupiah.</li>
+<li>Setiap akhir bulan, publisher adsense selalu memeriksa rate Western Union sebelum mencairkan dananya.</li>
+</ul><h2>Berbagai keterbatasan</h2>
+
+<ul>
+<li>API ini masih jauh dari sempurna. Karena saat ini hanya menyediakan data dari BCA. Masih diperlukan berbagai sumber lain, terutama Western Union.</li>
+<li>Waktu. Saya bisa mengembangkan API ini di luar jam kerja saya. Berbagai ide muncul di otak, seperti membuat widget untuk WordPress, membuat aplikasi Android / iOS dari API ini. Namun, karena keterbatasan waktu, saya hanya bisa mengupdate ini pelan-pelan. Bagi yang ingin memanfaatkan API ini untuk keperluan itu, saya sangat terbuka dan senang jika ada yang bisa memanfaatkan API ini.</li>
+<li>Biaya. Saat ini server saya tempatkan di Pagodabox yang versi gratis, sekalipun versi gratis, saya bisa menjamin bahwa server ini bisa menampung ribuan - puluhan ribu request sehari karena sistem caching.</li>
+<li>Update satu jam sekali. Untuk mengatasi lonjakan traffic, saya memakai sistem caching dimana data akan disingkronkan dengan sumber data asli ( misal, bca ) selama satu jam sekali. Cache memakai memcache, kode bisa anda lihat di repositori ini.</li>
+<li>Masih perlu beberapa refactor. Saya sadari kode ini masih kurang rapi. Perlu dilakukan refactor untuk memindahkan beberapa kode di dalam folder controller. Namun, saat ini saya merasa hal ini masih belum dibutuhkan. Refactor akan dilakukan ketika sudah semakin kompleks. (Asline sek males bro, LOL).</li>
+<li>Kode masih platform specific ke pagodabox. </li>
+</ul><h2>Contoh pemakaian:</h2>
+
+<h3>PHP</h3>
+
+<pre><code>&lt;?php
+$response =  json_decode(file_get_contents('http://kurs.dropsugar.com/rates/bca.json'));
+echo "Terakhir diupdate pada: " . date('j-m-Y H:i:s');
+foreach ($response-&gt;kurs as $currency =&gt; $value) {
+    echo 'Nilai jual ' . $currency . ' adalah: ' . $value-&gt;jual . '&lt;br&gt;';
+    echo 'Nilai beli ' . $currency . ' adalah: ' . $value-&gt;beli . '&lt;br&gt;&lt;br&gt;';
+}
+</code></pre>
+
+<h3>Contoh lain PHP, lebih singkat</h3>
+
+<p>Contoh ini cocok untuk keperluan kecil</p>
+
+<pre><code>&lt;?php
+$response =  json_decode(file_get_contents('http://kurs.dropsugar.com/rates/bca.json'));
+echo "Kurs jual USD hari ini: " . $response-&gt;kurs-&gt;USD-&gt;jual . '&lt;br&gt;';
+echo "Kurs beli USD hari ini: " . $response-&gt;kurs-&gt;USD-&gt;beli . '&lt;br&gt;';
+</code></pre>
+
+<h3>jQuery</h3>
+
+<p>Contoh ini blom kutes :D, namun garis besarnya akan seperti ini</p>
+
+<pre><code>$(function(){
+    $.getJSON('http://kurs.dropsugar.com/rates/bca.jsonp?callback=?', function(data){
+        //data sudah didapat, kita update tag div dengan ID usd-jual dan usd-beli
+        $('#usd-jual').html(data.kurs.USD.jual);
+        $('#usd-beli').html(data.kurs.USD.beli);
+
+        // untuk keperluan debug, hasil panggil API bisa dilihat di javascript console
+        console.log(data);
+    });
+});
+</code></pre>
+
+<h2>Penutup</h2>
+
+<p>Jika anda ingin kontribusi ke kode ini, silakan fork dan kirim pull request. Semoga Allah membalas siapapun yang mau kontribusi ke kode ini agar makin berguna bagi masyarakat.</p>
+
+<p>Saya sadar aplikasi ini masih belum sempurna, secara pribadi, saya ingin memasukkan berbagai sumber, seperti Bank Syariah. Namun, saya harus memulai dari instansi yang umum dipakai.</p>
+
+<h2>Ucapan terimasih &amp; tautan</h2>
+
+<p>Orang tuaku, istriku Lara Asih Mulya, asistenku Moeghan Diantok beserta Rinah, Rizky Ramadhan beserta Maylatun Sari, Ari Sandi Robert, Adrian Sandi, Momod Ari, Leonardo Rony S, Aa Gym, Yusuf Mansyur, Guru-guru saya, kakek buyut, anak cucu, dan semua teman TC 05, rekan-rekan iMers dan IMMatic, saudara-saudara serta semua pihak yang belum saya sebut di sini.</p>
+
+<ul>
+<li><a href="http://dropsugar.com">http://dropsugar.com</a></li>
+<li><a href="http://amplop.in">http://amplop.in</a></li>
+<li><a href="http://troli.in">http://troli.in</a></li>
+</ul><h2>Donasi</h2>
+
+<p>Anda merasa aplikasi ini berguna? Saya menerima donasi via Bank, PayPal dan Gittip, sila hubungi <a href="mailto:buchin@dropsugar.com">buchin@dropsugar.com</a>.
+Donasi anda akan saya buat untuk kelangsungan project ini, seperti biaya server dan lain-lain.</p>
+
+<h2>Lisensi</h2>
+
+<p>Free software, sila gunakan untuk keperluan yang halal :p</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/buchin">buchin</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
