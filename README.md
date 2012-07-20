@@ -69,7 +69,7 @@ $(function(){
 ## Penutup
 Jika anda ingin kontribusi ke kode ini, silakan fork dan kirim pull request. Semoga Allah membalas siapapun yang mau kontribusi ke kode ini agar makin berguna bagi masyarakat.
 
-Saya sadar aplikasi ini masih belum sempurna, secara pribadi, saya ingin memasukkan berbagai sumber, seperti Bank Syariah. Namun, saya haru memulai dari instansi yang umum dipakai.
+Saya sadar aplikasi ini masih belum sempurna, secara pribadi, saya ingin memasukkan berbagai sumber, seperti Bank Syariah. Namun, saya harus memulai dari instansi yang umum dipakai.
 
 ## Ucapan terimasih & tautan
 
